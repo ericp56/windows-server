@@ -17,15 +17,15 @@ export class WindowsServerStack extends Stack {
    * @param scope 
    * @returns 
    */
-  constructor(scope: App, id: string, props?: StackProps) {
+  constructor(scope: App, id: string, props?: StackProps, myPublicIP = '10.10.10.10/32') {
     super(scope, id, props);
 
-    fetch('https://api.ipify.org').then(response => response.text()).then(x => this.buildEc2Stack(`${x}/32`));
+    this.buildEc2Stack(`${myPublicIP}/32`);
     
   }
   
   
-  private buildEc2Stack(myPublicIP = "10.10.10.10/32") {
+  private buildEc2Stack(myPublicIP: string) {
 
     Tags.of(this).add('cost_center', 'winedows-server-stack');
 
@@ -57,7 +57,7 @@ export class WindowsServerStack extends Stack {
       ]
     });
 
-    const role = new Role(this, 'MyRole', {
+    const role = new Role(this, 'WindowsServerEc2Role', {
       assumedBy: new ServicePrincipal('ec2.amazonaws.com'),
       managedPolicies: [
         ManagedPolicy.fromManagedPolicyArn(
