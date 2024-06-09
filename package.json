@@ -1,0 +1,30 @@
+{
+  "name": "windows-server",
+  "version": "0.1.0",
+  "bin": {
+    "windows-server": "bin/windows-server.ts"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "tsc --outDir dist",
+    "watch": "tsc -w",
+    "test": "npm run clean && npm run build && jest",
+    "cdk": "cdk"
+  },
+  "devDependencies": {
+    "@aws-cdk/assert": "^2.68.0",
+    "@types/jest": "^29.5.5",
+    "@types/node": "^20.9.3",
+    "aws-cdk": "^2.110.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.2"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "^2.110.0"
+  }
+}
