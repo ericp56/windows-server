@@ -27,7 +27,7 @@ export class WindowsServerStack extends Stack {
   
   private buildEc2Stack(myPublicIP: string) {
 
-    Tags.of(this).add('cost_center', 'winedows-server-stack');
+    Tags.of(this).add('cost_center', 'windows-server-stack');
 
     const rootVolume: ec2.BlockDevice = {
       deviceName: '/dev/sda1',
